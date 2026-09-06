@@ -1,0 +1,95 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import PageHero from '../components/PageHero.astro';
+import SiteLayout from '../layouts/SiteLayout.astro';
+import bibSource from '../data/publications.bib?raw';
+import { formatAuthors, parseBibTeX } from '../lib/bibtex';
+
+const publications = parseBibTeX(bibSource);
+const years = [...new Set(publications.map((publication) => publication.year))];
+---
+
+<SiteLayout title="Publications — SQuARE" description="Publications authored by current SQuARE members, including the PI’s work before the group was established.">
+  <Header />
+  <main>
+    <PageHero
+      eyebrow="Publications"
+      title="Ideas, measurements, and results."
+      accent="results."
+      intro="Publications authored by current SQuARE members, including the PI’s work before the group was established. The list is generated from one BibTeX source."
+    />
+    <section class="publication-controls section-pad" aria-label="Publication filters">
+      <label class="search-control">
+        <span>Search publications</span>
+        <input id="publication-search" type="search" placeholder="Title, author, journal, or year" autocomplete="off" />
+      </label>
+      <div class="filter-buttons" aria-label="Filter publications">
+        <button class="filter-button is-active" type="button" data-filter="all">All <span>{publications.length}</span></button>
+        <button class="filter-button" type="button" data-filter="selected">Selected <span>{publications.filter((publication) => publication.selected).length}</span></button>
+        <a href="https://ui.adsabs.harvard.edu/public-libraries/-qlmCI7ySnmm8VvrhaHLLw" target="_blank" rel="noreferrer">ADS Library ↗</a>
+        <a href="https://scholar.google.co.kr/citations?user=mREqevIAAAAJ" target="_blank" rel="noreferrer">Google Scholar ↗</a>
+      </div>
+    </section>
+    <section class="publication-archive section-pad" aria-live="polite">
+      {years.map((year) => (
+        <div class="publication-year" data-year={year}>
+          <h2>{year}</h2>
+          <div class="publication-list">
+            {publications.filter((publication) => publication.year === year).map((publication, index) => (
+              <article
+                class="publication-row"
+                data-selected={publication.selected ? 'true' : 'false'}
+                data-search={`${publication.title} ${publication.author} ${publication.journal} ${publication.year}`.toLowerCase()}
+              >
+                <span class="publication-index">{String(index + 1).padStart(2, '0')}</span>
+                <div>
+                  <h3>{publication.title}</h3>
+                  <p>{formatAuthors(publication.author)}</p>
+                </div>
+                <p class="publication-venue">
+                  {publication.journal}{publication.volume ? ` ${publication.volume}` : ''}{publication.pages ? `, ${publication.pages}` : ''}
+                  {publication.status ? <span>{publication.status}</span> : null}
+                </p>
+                {publication.adsurl ? <a class="publication-arrow" href={publication.adsurl} target="_blank" rel="noreferrer" aria-label={`Open ${publication.title} in ADS`}>↗</a> : null}
+              </article>
+            ))}
+          </div>
+        </div>
+      ))}
+      <p class="publication-empty" hidden>No publications match your search.</p>
+    </section>
+  </main>
+  <Footer />
+
+  <script>
+    const input = document.querySelector<HTMLInputElement>('#publication-search');
+    const buttons = [...document.querySelectorAll<HTMLButtonElement>('.filter-button')];
+    const rows = [...document.querySelectorAll<HTMLElement>('.publication-row')];
+    const years = [...document.querySelectorAll<HTMLElement>('.publication-year')];
+    const empty = document.querySelector<HTMLElement>('.publication-empty');
+    let filter = 'all';
+
+    const update = () => {
+      const query = input?.value.trim().toLowerCase() ?? '';
+      let visibleCount = 0;
+      rows.forEach((row) => {
+        const matchesFilter = filter === 'all' || row.dataset.selected === 'true';
+        const matchesQuery = !query || row.dataset.search?.includes(query);
+        row.hidden = !(matchesFilter && matchesQuery);
+        if (!row.hidden) visibleCount += 1;
+      });
+      years.forEach((year) => {
+        year.hidden = !year.querySelector('.publication-row:not([hidden])');
+      });
+      if (empty) empty.hidden = visibleCount !== 0;
+    };
+
+    input?.addEventListener('input', update);
+    buttons.forEach((button) => button.addEventListener('click', () => {
+      filter = button.dataset.filter ?? 'all';
+      buttons.forEach((item) => item.classList.toggle('is-active', item === button));
+      update();
+    }));
+  </script>
+</SiteLayout>

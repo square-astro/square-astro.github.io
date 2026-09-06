@@ -1,0 +1,64 @@
+---
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const appointments = [
+  ['2025 — present', 'Assistant Professor', 'Sejong University'],
+  ['2023 — 2025', 'Senior Researcher', 'Korea Astronomy & Space Science Institute'],
+  ['2021 — 2023', 'Sejong Science Fellow', 'Kyungpook National University'],
+  ['2019 — 2021', 'KIAA Postdoctoral Fellow', 'Kavli Institute for Astronomy and Astrophysics, Peking University'],
+];
+---
+
+<SiteLayout title="Yongjung Kim — SQuARE" description="Yongjung Kim, Principal Investigator of the SQuARE Group at Sejong University." image="/images/yongjung-kim.jpg">
+  <Header />
+  <main class="pi-page">
+    <section class="pi-hero section-pad">
+      <div class="pi-photo-wrap">
+        <img src={`${base}/images/yongjung-kim.jpg`} alt="Yongjung Kim at an astronomical observatory" />
+        <p>PRINCIPAL INVESTIGATOR · SQUARE</p>
+      </div>
+      <div class="pi-intro">
+        <p class="eyebrow"><span></span> Principal Investigator</p>
+        <h1>Yongjung<br /><em>Kim</em></h1>
+        <p>I am an observational astronomer interested in quasars across cosmic time and an Assistant Professor at Sejong University.</p>
+        <div class="pi-links">
+          <a href="https://prof.sejong.ac.kr/yongjungkim" target="_blank" rel="noreferrer">Faculty profile ↗</a>
+          <a href={`${base}/CV_YongjungKim.pdf`} target="_blank">Full CV ↗</a>
+          <a href="https://ui.adsabs.harvard.edu/public-libraries/-qlmCI7ySnmm8VvrhaHLLw" target="_blank" rel="noreferrer">ADS Library ↗</a>
+        </div>
+      </div>
+    </section>
+    <section class="pi-biography section-pad">
+      <p class="section-number">01 · Biography</p>
+      <div>
+        <p>Before joining Sejong University, I worked at the Korea Astronomy and Space Science Institute, Kyungpook National University, and the Kavli Institute for Astronomy and Astrophysics.</p>
+        <p>I earned my Ph.D. in Astronomy from Seoul National University under the guidance of Professor Myungshin Im. My research combines multi-wavelength survey data and statistical methods to study quasar evolution, black hole growth, and the connection between quasars and their host galaxies.</p>
+      </div>
+    </section>
+    <section class="pi-details section-pad">
+      <div class="pi-column">
+        <p class="section-number">02 · Appointments</p>
+        {appointments.map((item) => (
+          <div class="timeline-row"><span>{item[0]}</span><div><strong>{item[1]}</strong><p>{item[2]}</p></div></div>
+        ))}
+      </div>
+      <div class="pi-column">
+        <p class="section-number">03 · Education & interests</p>
+        <div class="timeline-row"><span>2019</span><div><strong>Ph.D. in Astronomy</strong><p>Seoul National University</p></div></div>
+        <div class="timeline-row"><span>2013</span><div><strong>B.S. in Astronomy</strong><p>Seoul National University</p></div></div>
+        <div class="interest-list"><span>Quasars</span><span>Supermassive black holes</span><span>Galaxy evolution</span><span>Survey astronomy</span></div>
+      </div>
+    </section>
+    <section class="grant-section section-pad">
+      <p class="section-number">04 · Selected grants</p>
+      <div>
+        <article><span>2026 — 2031</span><h3>Outstanding Young Scientist Grant</h3><p>National Research Foundation of Korea</p></article>
+        <article><span>2021 — 2026</span><h3>Sejong Science Fellowship</h3><p>National Research Foundation of Korea</p></article>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</SiteLayout>

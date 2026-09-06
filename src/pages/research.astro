@@ -1,0 +1,73 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import PageHero from '../components/PageHero.astro';
+import SiteLayout from '../layouts/SiteLayout.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const topics = [
+  {
+    number: '01',
+    title: 'Discovering quasars across cosmic time',
+    text: 'We identify and characterize quasars across a wide range of redshifts, from the nearby universe to the cosmic dawn, using multi-wavelength data from large-area surveys. This work builds a more complete view of quasar populations and reveals previously overlooked or rare quasar types.',
+    image: '/images/quasar-spectra.png',
+    alt: 'A grid of observed spectra for high-redshift quasars',
+    note: 'MULTI-WAVELENGTH IDENTIFICATION',
+  },
+  {
+    number: '02',
+    title: 'Tracking quasar demographics over time',
+    text: 'We investigate how the number density, luminosity, and spectral properties of quasars change over billions of years. By constructing quasar luminosity functions and tracking their redshift evolution, we aim to reveal the physical processes behind the rise and fall of quasar activity.',
+    image: '/images/z5-luminosity-function.png',
+    alt: 'Quasar luminosity function measurements and model curves at high redshift',
+    note: 'POPULATION STATISTICS · z ~ 5',
+  },
+  {
+    number: '03',
+    title: 'Co-evolution of black holes and host galaxies',
+    text: 'We study the co-evolution of supermassive black holes and their host galaxies by combining infrared, optical, and submillimeter survey data. This lets us trace black hole growth alongside star formation and structural transformation during key cosmic epochs.',
+    image: '/images/z6-luminosity-function.png',
+    alt: 'High-redshift quasar measurements across absolute magnitude',
+    note: 'RELATED HIGH-REDSHIFT QUASAR WORK',
+  },
+];
+---
+
+<SiteLayout title="Research — SQuARE" description="Research themes of the SQuARE Group at Sejong University.">
+  <Header />
+  <main>
+    <PageHero
+      eyebrow="Research"
+      title="Following quasars through cosmic time."
+      accent="cosmic time."
+      intro="We use wide-area surveys and multi-wavelength observations to understand the origin, demographics, and environments of quasars — from the nearby universe to cosmic dawn."
+    />
+    <section class="research-topics">
+      {topics.map((topic, index) => (
+        <article class={`topic-block ${index % 2 === 1 ? 'topic-block-reverse' : ''}`}>
+          <div class="topic-copy">
+            <p class="topic-number">{topic.number}</p>
+            <h2>{topic.title}</h2>
+            <p>{topic.text}</p>
+            <div class="topic-tags">
+              <span>Surveys</span><span>Statistics</span><span>Evolution</span>
+            </div>
+          </div>
+          <figure class="topic-figure">
+            <img src={`${base}${topic.image}`} alt={topic.alt} loading="lazy" />
+            <figcaption>{topic.note}</figcaption>
+          </figure>
+        </article>
+      ))}
+    </section>
+    <section class="methods-band section-pad">
+      <p class="eyebrow eyebrow-light"><span></span> How we work</p>
+      <div class="methods-grid">
+        <div><strong>01</strong><h3>Observe</h3><p>Large-area, multi-wavelength survey data</p></div>
+        <div><strong>02</strong><h3>Measure</h3><p>Population statistics and spectral analysis</p></div>
+        <div><strong>03</strong><h3>Connect</h3><p>Black holes, quasars, and their host galaxies</p></div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</SiteLayout>
