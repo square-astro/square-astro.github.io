@@ -10,6 +10,14 @@ at Sejong University.
 - Research pages: `src/pages/research.astro`
 - Images and CV: `public/`
 
+The publication parser automatically marks papers with `Kim, Y.` as the first
+author as selected. For a corresponding-author paper, add the custom BibTeX
+field below to its entry:
+
+```bibtex
+corresponding = {Kim, Y.}
+```
+
 ## Local development
 
 ```sh

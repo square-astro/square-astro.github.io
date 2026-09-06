@@ -4,31 +4,39 @@ import Footer from '../components/Footer.astro';
 import PageHero from '../components/PageHero.astro';
 import SiteLayout from '../layouts/SiteLayout.astro';
 
-const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const topics = [
   {
     number: '01',
     title: 'Discovering quasars across cosmic time',
     text: 'We identify and characterize quasars across a wide range of redshifts, from the nearby universe to the cosmic dawn, using multi-wavelength data from large-area surveys. This work builds a more complete view of quasar populations and reveals previously overlooked or rare quasar types.',
-    image: '/images/quasar-spectra.png',
-    alt: 'A grid of observed spectra for high-redshift quasars',
-    note: 'MULTI-WAVELENGTH IDENTIFICATION',
+    note: 'QUASAR DISCOVERY',
+    details: [
+      ['Cosmic range', 'z ≈ 0–7'],
+      ['Observations', 'Optical · near-IR · mid-IR'],
+      ['Methods', 'Photometric selection · spectroscopy'],
+    ],
   },
   {
     number: '02',
     title: 'Tracking quasar demographics over time',
     text: 'We investigate how the number density, luminosity, and spectral properties of quasars change over billions of years. By constructing quasar luminosity functions and tracking their redshift evolution, we aim to reveal the physical processes behind the rise and fall of quasar activity.',
-    image: '/images/z5-luminosity-function.png',
-    alt: 'Quasar luminosity function measurements and model curves at high redshift',
-    note: 'POPULATION STATISTICS · z ~ 5',
+    note: 'QUASAR DEMOGRAPHICS',
+    details: [
+      ['Population scale', 'Survey-scale samples'],
+      ['Primary measure', 'Luminosity function'],
+      ['Dimensions', 'Redshift · luminosity · spectrum'],
+    ],
   },
   {
     number: '03',
     title: 'Co-evolution of black holes and host galaxies',
     text: 'We study the co-evolution of supermassive black holes and their host galaxies by combining infrared, optical, and submillimeter survey data. This lets us trace black hole growth alongside star formation and structural transformation during key cosmic epochs.',
-    image: '/images/z6-luminosity-function.png',
-    alt: 'High-redshift quasar measurements across absolute magnitude',
-    note: 'RELATED HIGH-REDSHIFT QUASAR WORK',
+    note: 'BLACK HOLES + GALAXIES',
+    details: [
+      ['Systems', 'AGN + host galaxy'],
+      ['Galaxy tracers', 'Star formation · morphology'],
+      ['AGN tracers', 'Accretion · obscuration'],
+    ],
   },
 ];
 ---
@@ -53,10 +61,14 @@ const topics = [
               <span>Surveys</span><span>Statistics</span><span>Evolution</span>
             </div>
           </div>
-          <figure class="topic-figure">
-            <img src={`${base}${topic.image}`} alt={topic.alt} loading="lazy" />
-            <figcaption>{topic.note}</figcaption>
-          </figure>
+          <aside class="topic-panel" aria-label={`${topic.title} research scope`}>
+            <p class="topic-panel-label">{topic.note}</p>
+            <dl>
+              {topic.details.map(([label, value]) => (
+                <div><dt>{label}</dt><dd>{value}</dd></div>
+              ))}
+            </dl>
+          </aside>
         </article>
       ))}
     </section>

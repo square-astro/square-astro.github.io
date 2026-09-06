@@ -8,8 +8,11 @@ export interface Publication {
   pages?: string;
   status?: string;
   adsurl?: string;
+  corresponding?: string;
   selected: boolean;
 }
+
+const SELECTED_AUTHOR = 'Kim, Y.';
 
 function readField(body: string, field: string): string {
   const match = body.match(new RegExp(`(?:^|\\n)\\s*${field}\\s*=\\s*[\\{\"]([^}\"]*)[}\\"]\\s*,?`, 'i'));
@@ -22,17 +25,26 @@ export function parseBibTeX(source: string): Publication[] {
   return entries
     .map((entry) => {
       const id = entry.match(/@\w+\s*\{\s*([^,]+),/)?.[1]?.trim() ?? '';
+      const author = readField(entry, 'author');
+      const corresponding = readField(entry, 'corresponding');
+      const normalize = (name: string) => name.replace(/[{}]/g, '').replace(/\s+/g, ' ').trim().toLowerCase();
+      const firstAuthor = author.split(/\s+and\s+/i)[0] ?? '';
+      const correspondingAuthors = corresponding.split(/\s+and\s+/i).filter(Boolean);
+      const selected = normalize(firstAuthor) === normalize(SELECTED_AUTHOR)
+        || correspondingAuthors.some((name) => normalize(name) === normalize(SELECTED_AUTHOR));
+
       return {
         id,
         title: readField(entry, 'title'),
-        author: readField(entry, 'author'),
+        author,
         year: Number(readField(entry, 'year')),
         journal: readField(entry, 'journal'),
         volume: readField(entry, 'volume') || undefined,
         pages: readField(entry, 'pages') || undefined,
         status: readField(entry, 'status') || undefined,
         adsurl: readField(entry, 'adsurl') || undefined,
-        selected: readField(entry, 'selected') === 'true',
+        corresponding: corresponding || undefined,
+        selected,
       };
     })
     .filter((entry) => entry.id && entry.title && entry.year)
