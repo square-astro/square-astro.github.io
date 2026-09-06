@@ -18,4 +18,4 @@ pnpm dev
 ```
 
 The production site is configured for
-`https://yongjungkim.github.io/square-astro/` and deploys through GitHub Actions.
+`https://square-astro.github.io/` and deploys through GitHub Actions.
