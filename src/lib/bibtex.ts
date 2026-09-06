@@ -1,3 +1,5 @@
+import { parse } from '@retorquere/bibtex-parser';
+
 export interface Publication {
   id: string;
   title: string;
@@ -8,43 +10,80 @@ export interface Publication {
   pages?: string;
   status?: string;
   adsurl?: string;
-  corresponding?: string;
+  doi?: string;
   selected: boolean;
 }
 
-const SELECTED_AUTHOR = 'Kim, Y.';
+interface ParsedAuthor {
+  firstName?: string;
+  lastName?: string;
+  prefix?: string;
+  suffix?: string;
+  literal?: string;
+}
 
-function readField(body: string, field: string): string {
-  const match = body.match(new RegExp(`(?:^|\\n)\\s*${field}\\s*=\\s*[\\{\"]([^}\"]*)[}\\"]\\s*,?`, 'i'));
-  return match?.[1]?.trim() ?? '';
+const JOURNAL_NAMES: Record<string, string> = {
+  '\\aap': 'A&A',
+  '\\aj': 'AJ',
+  '\\apj': 'ApJ',
+  '\\apjl': 'ApJL',
+  '\\apjs': 'ApJS',
+  '\\araa': 'ARA&A',
+  '\\jkas': 'JKAS',
+  '\\mnras': 'MNRAS',
+  '\\nat': 'Nature',
+  '\\pasp': 'PASP',
+  '\\prd': 'Physical Review D',
+};
+
+function asString(value: unknown): string {
+  return typeof value === 'string' ? value.trim() : '';
+}
+
+function formatParsedAuthor(author: ParsedAuthor): string {
+  if (author.literal) return author.literal;
+
+  const lastName = [author.prefix, author.lastName].filter(Boolean).join(' ');
+  const suffix = author.suffix ? `, ${author.suffix}` : '';
+  return author.firstName ? `${lastName}${suffix}, ${author.firstName}` : `${lastName}${suffix}`;
+}
+
+function readAuthors(value: unknown): string {
+  if (!Array.isArray(value)) return asString(value);
+  return value.map((author) => formatParsedAuthor(author as ParsedAuthor)).filter(Boolean).join(' and ');
+}
+
+function formatJournal(value: unknown): string {
+  const journal = asString(value);
+  return JOURNAL_NAMES[journal.toLowerCase()] ?? journal.replace(/^\\/, '');
+}
+
+function cleanUrl(value: unknown): string | undefined {
+  const url = asString(value);
+  if (!url) return undefined;
+  const markdownLink = url.match(/^\[[^\]]+\]\((https?:\/\/[^)]+)\)$/);
+  return markdownLink?.[1] ?? url;
 }
 
 export function parseBibTeX(source: string): Publication[] {
-  const entries = source.match(/@\w+\s*\{[\s\S]*?\n\}/g) ?? [];
+  const bibliography = parse(source, { sentenceCase: false });
 
-  return entries
+  return bibliography.entries
     .map((entry) => {
-      const id = entry.match(/@\w+\s*\{\s*([^,]+),/)?.[1]?.trim() ?? '';
-      const author = readField(entry, 'author');
-      const corresponding = readField(entry, 'corresponding');
-      const normalize = (name: string) => name.replace(/[{}]/g, '').replace(/\s+/g, ' ').trim().toLowerCase();
-      const firstAuthor = author.split(/\s+and\s+/i)[0] ?? '';
-      const correspondingAuthors = corresponding.split(/\s+and\s+/i).filter(Boolean);
-      const selected = normalize(firstAuthor) === normalize(SELECTED_AUTHOR)
-        || correspondingAuthors.some((name) => normalize(name) === normalize(SELECTED_AUTHOR));
-
+      const fields = entry.fields;
+      const pages = asString(fields.pages) || asString(fields.eid) || undefined;
       return {
-        id,
-        title: readField(entry, 'title'),
-        author,
-        year: Number(readField(entry, 'year')),
-        journal: readField(entry, 'journal'),
-        volume: readField(entry, 'volume') || undefined,
-        pages: readField(entry, 'pages') || undefined,
-        status: readField(entry, 'status') || undefined,
-        adsurl: readField(entry, 'adsurl') || undefined,
-        corresponding: corresponding || undefined,
-        selected,
+        id: entry.key,
+        title: asString(fields.title),
+        author: readAuthors(fields.author),
+        year: Number(asString(fields.year)),
+        journal: formatJournal(fields.journal),
+        volume: asString(fields.volume) || undefined,
+        pages,
+        status: asString(fields.status) || undefined,
+        adsurl: cleanUrl(fields.adsurl),
+        doi: asString(fields.doi) || undefined,
+        selected: asString(fields.selected).toLowerCase() === 'true',
       };
     })
     .filter((entry) => entry.id && entry.title && entry.year)
@@ -52,8 +91,12 @@ export function parseBibTeX(source: string): Publication[] {
 }
 
 export function formatAuthors(authors: string): string {
-  return authors
-    .split(/\s+and\s+/)
-    .map((author) => author === 'others' ? 'et al.' : author)
-    .join(', ');
+  const names = authors
+    .split(/\s+and\s+/i)
+    .map((author) => author.toLowerCase() === 'others' ? 'et al.' : author)
+    .filter(Boolean);
+
+  if (names.includes('et al.')) return names.join(', ');
+  if (names.length > 6) return `${names.slice(0, 6).join(', ')}, et al.`;
+  return names.join(', ');
 }
