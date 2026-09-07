@@ -6,7 +6,7 @@ import SiteLayout from '../layouts/SiteLayout.astro';
 import members from '../data/members.json';
 import publicationOverrides from '../data/publication-overrides.json';
 import bibSource from '../data/publications.bib?raw';
-import { formatAuthors, parseBibTeX } from '../lib/bibtex';
+import { formatAuthors, formatPublicationVenue, parseBibTeX } from '../lib/bibtex';
 
 const publications = parseBibTeX(bibSource, publicationOverrides);
 const groupAuthorNames = members.flatMap((member) => member.publicationNames);
@@ -51,7 +51,7 @@ const years = [...new Set(publications.map((publication) => publication.year))];
                   <p>{formatAuthors(publication.authors, groupAuthorNames)}</p>
                 </div>
                 <p class="publication-venue">
-                  {publication.journal}{publication.volume ? ` ${publication.volume}` : ''}{publication.pages ? `, ${publication.pages}` : ''}
+                  {formatPublicationVenue(publication)}
                   {publication.status ? <span>{publication.status}</span> : null}
                 </p>
                 {publication.adsurl ? <a class="publication-arrow" href={publication.adsurl} target="_blank" rel="noreferrer" aria-label={`Open ${publication.title} in ADS`}>↗</a> : null}

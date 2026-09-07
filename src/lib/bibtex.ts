@@ -43,6 +43,9 @@ const JOURNAL_NAMES: Record<string, string> = {
   '\\nat': 'Nature',
   '\\pasp': 'PASP',
   '\\prd': 'Physical Review D',
+  'journal of korean astronomical society': 'JKAS',
+  'publication of korean astronomical society': 'PKAS',
+  'arxiv e-prints': 'arXiv',
 };
 
 const MONTHS: Record<string, number> = {
@@ -191,4 +194,16 @@ export function formatAuthors(authors: string[], groupAuthorNames: string[] = []
   if (names.slice(finalIncludedIndex + 1).length > 0) output.push('et al.');
 
   return output.join(', ');
+}
+
+export function formatPublicationVenue(publication: Publication): string {
+  if (publication.journal.toLowerCase() === 'arxiv') {
+    const identifier = publication.pages?.replace(/^arxiv\s*:\s*/i, '');
+    return identifier ? `arXiv:${identifier}` : 'arXiv';
+  }
+
+  return [
+    publication.journal,
+    publication.volume,
+  ].filter(Boolean).join(' ') + (publication.pages ? `, ${publication.pages}` : '');
 }

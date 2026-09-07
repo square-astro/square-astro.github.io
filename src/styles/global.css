@@ -111,7 +111,7 @@ nav a[aria-current='page'] { color: var(--orange); }
 .publication-list-light { border-color: rgba(255,255,255,.18); }
 .publication-row { align-items: start; border-bottom: 1px solid var(--line); display: grid; gap: 28px; grid-template-columns: 34px minmax(0, 1fr) 135px 20px; padding: 27px 0; }
 .publication-list-light .publication-row { border-color: rgba(255,255,255,.18); }
-.publication-index, .publication-venue { font: 400 9px 'DM Mono', monospace; letter-spacing: .06em; margin: 3px 0 0; text-transform: uppercase; }
+.publication-index, .publication-venue { font: 400 9px 'DM Mono', monospace; letter-spacing: .06em; margin: 3px 0 0; }
 .publication-row h3 { font-size: clamp(18px, 1.55vw, 24px); font-weight: 500; letter-spacing: -.035em; line-height: 1.25; margin: 0; max-width: 910px; }
 .publication-row div > p { color: var(--ink-soft); font-size: 12px; line-height: 1.5; margin: 12px 0 0; }
 .publication-list-light .publication-row div > p, .publication-list-light .publication-venue { color: rgba(255,255,255,.55); }
