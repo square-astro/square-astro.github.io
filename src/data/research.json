@@ -1,0 +1,29 @@
+[
+  {
+    "number": "01",
+    "title": "Discovering quasars across cosmic time",
+    "text": "We identify and characterize quasars across a wide range of redshifts, from the nearby universe to the cosmic dawn, using multi-wavelength data from large-area surveys. This work builds a more complete view of quasar populations and reveals previously overlooked or rare quasar types.",
+    "tags": ["Surveys", "Multi-wavelength data", "Spectroscopy"],
+    "image": "/images/research/quasar-spectra.png",
+    "alt": "A grid of observed spectra for high-redshift quasars",
+    "caption": "Observed spectra of high-redshift quasars"
+  },
+  {
+    "number": "02",
+    "title": "Tracking quasar demographics over time",
+    "text": "We investigate how the number density, luminosity, and spectral properties of quasars change over billions of years. By constructing quasar luminosity functions and tracking their redshift evolution, we aim to reveal the physical processes behind the rise and fall of quasar activity.",
+    "tags": ["Luminosity functions", "Population statistics", "Evolution"],
+    "image": "/images/research/z5-luminosity-function.png",
+    "alt": "Quasar luminosity function measurements and model curves at redshift five",
+    "caption": "Quasar luminosity function at z ~ 5"
+  },
+  {
+    "number": "03",
+    "title": "Co-evolution of black holes and host galaxies",
+    "text": "We study the co-evolution of supermassive black holes and their host galaxies by combining infrared, optical, and submillimeter survey data. This lets us trace black hole growth alongside star formation and structural transformation during key cosmic epochs.",
+    "tags": ["Black hole growth", "Host galaxies", "Star formation"],
+    "image": "",
+    "alt": "",
+    "caption": ""
+  }
+]

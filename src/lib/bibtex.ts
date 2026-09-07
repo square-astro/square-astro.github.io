@@ -66,7 +66,9 @@ function cleanUrl(value: unknown): string | undefined {
 }
 
 export function parseBibTeX(source: string): Publication[] {
-  const bibliography = parse(source, { sentenceCase: false });
+  // Older hand-maintained entries used URL-encoded ampersands in ADS bibcodes.
+  // A bare percent sign starts a BibTeX comment, so normalize those URLs first.
+  const bibliography = parse(source.replace(/%26/gi, '&'), { sentenceCase: false });
 
   return bibliography.entries
     .map((entry) => {

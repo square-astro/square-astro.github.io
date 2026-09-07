@@ -7,16 +7,21 @@ at Sejong University.
 
 - Member records: `src/data/members.json`
 - Publications: `src/data/publications.bib`
-- Research pages: `src/pages/research.astro`
+- Research topics and image paths: `src/data/research.json`
 - Images and CV: `public/`
 
-The publication parser automatically marks papers with `Kim, Y.` as the first
-author as selected. For a corresponding-author paper, add the custom BibTeX
-field below to its entry:
+Paste the BibTeX exported by ADS directly into `src/data/publications.bib`.
+All entries appear in the full publication list. To include an entry in the
+Selected filter and the home-page highlights, add this custom field before the
+closing brace:
 
 ```bibtex
-corresponding = {Kim, Y.}
+selected = {true}
 ```
+
+Research images belong in `public/images/research/`. Add the public image path,
+alternative text, and caption to the matching record in `src/data/research.json`.
+An empty `image` value leaves the image area blank.
 
 ## Local development
 
