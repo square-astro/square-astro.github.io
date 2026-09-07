@@ -3,12 +3,14 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import SiteLayout from '../layouts/SiteLayout.astro';
 import members from '../data/members.json';
+import publicationOverrides from '../data/publication-overrides.json';
 import bibSource from '../data/publications.bib?raw';
 import { formatAuthors, parseBibTeX } from '../lib/bibtex';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const currentMembers = members.filter((member) => member.status === 'current').sort((a, b) => a.order - b.order);
-const selectedPubs = parseBibTeX(bibSource).filter((publication) => publication.selected).slice(0, 3);
+const groupAuthorNames = members.flatMap((member) => member.publicationNames);
+const selectedPubs = parseBibTeX(bibSource, publicationOverrides).filter((publication) => publication.selected).slice(0, 3);
 const research = [
   {
     number: '01',
@@ -119,7 +121,7 @@ function period(start: string, end: string | null) {
             <span class="publication-index">{String(index + 1).padStart(2, '0')}</span>
             <div>
               <h3>{publication.title}</h3>
-              <p>{formatAuthors(publication.author)}</p>
+              <p>{formatAuthors(publication.authors, groupAuthorNames)}</p>
             </div>
             <p class="publication-venue">{publication.journal} · {publication.year}</p>
             <span class="publication-arrow">↗</span>
