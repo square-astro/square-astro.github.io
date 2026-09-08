@@ -16,7 +16,7 @@ const topics = researchTopics;
       eyebrow="Research"
       title="Our research areas."
       accent="research areas."
-      intro="We use wide-area surveys and multi-wavelength observations to understand the origin, demographics, and environments of quasars — from the nearby universe to cosmic dawn."
+      intro="We use wide-area optical and infrared surveys to study quasar populations, obscured accretion, and the near-infrared sky with SPHEREx."
     />
     <section class="research-topics">
       {topics.map((topic, index) => (
@@ -29,10 +29,21 @@ const topics = researchTopics;
               {topic.tags.map((tag) => <span>{tag}</span>)}
             </div>
           </div>
-          <figure class={`topic-figure ${topic.image ? '' : 'topic-figure-empty'}`}>
-            {topic.image && <img src={`${base}${topic.image}`} alt={topic.alt} loading="lazy" />}
-            {topic.caption && <figcaption>{topic.caption}</figcaption>}
-          </figure>
+          <div class={`topic-media ${topic.images.length === 1 ? 'topic-media-single' : ''}`}>
+            {topic.images.map((image) => (
+              <figure class="topic-figure">
+                <div class={`topic-image-frame topic-image-${image.fit}`}>
+                  <img src={`${base}${image.src}`} alt={image.alt} loading="lazy" />
+                </div>
+                <figcaption>
+                  <span>{image.caption}</span>
+                  <a href={image.sourceUrl} target="_blank" rel="noreferrer">
+                    {image.source} <span aria-hidden="true">↗</span>
+                  </a>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
         </article>
       ))}
     </section>

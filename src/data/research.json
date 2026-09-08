@@ -1,29 +1,66 @@
 [
   {
     "number": "01",
-    "title": "Discovering quasars across cosmic time",
-    "text": "We identify and characterize quasars across a wide range of redshifts, from the nearby universe to the cosmic dawn, using multi-wavelength data from large-area surveys. This work builds a more complete view of quasar populations and reveals previously overlooked or rare quasar types.",
-    "tags": ["Surveys", "Multi-wavelength data", "Spectroscopy"],
-    "image": "/images/research/quasar-spectra.png",
-    "alt": "A grid of observed spectra for high-redshift quasars",
-    "caption": "Observed spectra of high-redshift quasars"
+    "title": "Quasar populations across cosmic time",
+    "text": "We build quasar samples across a broad redshift range and use luminosity functions to measure how their abundance and luminosity change over cosmic time. Wide-area surveys such as IMS and KS4 help us identify rare quasars and place their evolution in a statistical context.",
+    "tags": ["Quasar surveys", "Luminosity functions", "Cosmic evolution"],
+    "images": [
+      {
+        "src": "/images/research/quasar-evolution.svg",
+        "alt": "Quasar luminosity functions measured at several redshifts from two to six",
+        "caption": "Quasar luminosity functions from z ~ 2 to 6",
+        "source": "Kim & Im 2021",
+        "sourceUrl": "https://arxiv.org/abs/2103.06265",
+        "fit": "contain"
+      },
+      {
+        "src": "/images/research/ks4-coverage.png",
+        "alt": "KS4 and DES survey coverage around the south ecliptic pole",
+        "caption": "The KS4 survey footprint in the southern sky",
+        "source": "Kim et al. 2024",
+        "sourceUrl": "https://arxiv.org/abs/2410.17187",
+        "fit": "contain"
+      }
+    ]
   },
   {
     "number": "02",
-    "title": "Tracking quasar demographics over time",
-    "text": "We investigate how the number density, luminosity, and spectral properties of quasars change over billions of years. By constructing quasar luminosity functions and tracking their redshift evolution, we aim to reveal the physical processes behind the rise and fall of quasar activity.",
-    "tags": ["Luminosity functions", "Population statistics", "Evolution"],
-    "image": "/images/research/z5-luminosity-function.png",
-    "alt": "Quasar luminosity function measurements and model curves at redshift five",
-    "caption": "Quasar luminosity function at z ~ 5"
+    "title": "Obscured quasars and black-hole growth",
+    "text": "We study quasars whose optical light is reddened or obscured by dust. By combining optical and infrared spectral energy distributions with emission-line measurements, we examine how obscuration affects quasar demographics and what accretion rates reveal about black-hole growth.",
+    "tags": ["Red quasars", "Dust obscuration", "Accretion"],
+    "images": [
+      {
+        "src": "/images/research/red-quasar-sed.svg",
+        "alt": "Examples of optical to mid-infrared spectral energy distribution fits for type-1 quasars",
+        "caption": "Optical-to-mid-infrared SED fitting for red type-1 quasars",
+        "source": "Kim et al. 2024",
+        "sourceUrl": "https://arxiv.org/abs/2408.03228",
+        "fit": "contain"
+      },
+      {
+        "src": "/images/research/obscured-quasar-eddington.svg",
+        "alt": "Comparison of Eddington-ratio distributions for dust-obscured and unobscured quasars",
+        "caption": "Accretion rates of dust-obscured and unobscured quasars",
+        "source": "Kim et al. 2024",
+        "sourceUrl": "https://arxiv.org/abs/2408.03324",
+        "fit": "contain"
+      }
+    ]
   },
   {
     "number": "03",
-    "title": "Co-evolution of black holes and host galaxies",
-    "text": "We study the co-evolution of supermassive black holes and their host galaxies by combining infrared, optical, and submillimeter survey data. This lets us trace black hole growth alongside star formation and structural transformation during key cosmic epochs.",
-    "tags": ["Black hole growth", "Host galaxies", "Star formation"],
-    "image": "",
-    "alt": "",
-    "caption": ""
+    "title": "SPHEREx survey science",
+    "text": "We use SPHEREx all-sky near-infrared spectrophotometry to study the spectral energy distributions, redshifts, and population properties of quasars and galaxies. Our current work focuses on methods and analyses that make full use of this new survey dataset.",
+    "tags": ["SPHEREx", "Near-infrared spectroscopy", "All-sky surveys"],
+    "images": [
+      {
+        "src": "/images/research/spherex-in-orbit.jpg",
+        "alt": "Artist's concept of NASA's SPHEREx observatory in low Earth orbit",
+        "caption": "NASA's SPHEREx observatory in low Earth orbit",
+        "source": "NASA/JPL-Caltech",
+        "sourceUrl": "https://www.jpl.nasa.gov/images/pia26531-spherex-in-orbit-artists-concept/",
+        "fit": "cover"
+      }
+    ]
   }
 ]
