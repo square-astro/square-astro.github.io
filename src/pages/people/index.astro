@@ -38,7 +38,21 @@ function period(start: string, end: string | null) {
             </div>
             <div class="person-name">
               <p>{member.role}</p>
-              <h3>{member.name}</h3>
+              <div class="person-name-heading">
+                <h3>{member.name}</h3>
+                {member.orcid && (
+                  <a
+                    class="orcid-link"
+                    href={`https://orcid.org/${member.orcid}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`View ${member.name}'s ORCID record (${member.orcid})`}
+                    title={`ORCID ${member.orcid}`}
+                  >
+                    <img src={`${base}/images/orcid-id.svg`} alt="" width="24" height="24" />
+                  </a>
+                )}
+              </div>
             </div>
             <div class="person-details">
               <p class="person-period">{period(member.start, member.end)}</p>
@@ -57,7 +71,24 @@ function period(start: string, end: string | null) {
           <div class="people-directory">
             {formerMembers.map((member) => (
               <article class="person-entry">
-                <div class="person-name"><p>{member.role}</p><h3>{member.name}</h3></div>
+                <div class="person-name">
+                  <p>{member.role}</p>
+                  <div class="person-name-heading">
+                    <h3>{member.name}</h3>
+                    {member.orcid && (
+                      <a
+                        class="orcid-link"
+                        href={`https://orcid.org/${member.orcid}`}
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label={`View ${member.name}'s ORCID record (${member.orcid})`}
+                        title={`ORCID ${member.orcid}`}
+                      >
+                        <img src={`${base}/images/orcid-id.svg`} alt="" width="24" height="24" />
+                      </a>
+                    )}
+                  </div>
+                </div>
                 <div class="person-details"><p>{period(member.start, member.end)}</p></div>
               </article>
             ))}

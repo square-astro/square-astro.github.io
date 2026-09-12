@@ -2,8 +2,11 @@
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import SiteLayout from '../../layouts/SiteLayout.astro';
+import members from '../../data/members.json';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const profile = members.find((member) => member.id === 'yongjung-kim');
+const orcidUrl = profile?.orcid ? `https://orcid.org/${profile.orcid}` : null;
 const appointments = [
   ['2025 — present', 'Assistant Professor', 'Sejong University'],
   ['2023 — 2025', 'Senior Researcher', 'Korea Astronomy & Space Science Institute'],
@@ -18,16 +21,31 @@ const appointments = [
     <section class="pi-hero section-pad">
       <div class="pi-photo-wrap">
         <img src={`${base}/images/yongjung-kim.jpg`} alt="Yongjung Kim at an astronomical observatory" />
-        <p>PRINCIPAL INVESTIGATOR · SQUARE</p>
+        <p>PRINCIPAL INVESTIGATOR · SQuARE</p>
       </div>
       <div class="pi-intro">
         <p class="eyebrow"><span></span> Principal Investigator</p>
         <h1>Yongjung<br /><em>Kim</em></h1>
         <p>I am an observational astronomer interested in quasars across cosmic time and an Assistant Professor at Sejong University.</p>
         <div class="pi-links">
-          <a href="https://prof.sejong.ac.kr/yongjungkim" target="_blank" rel="noreferrer">Faculty profile ↗</a>
+          <a href="https://prof.sejong.ac.kr/yongjungkim" target="_blank" rel="noreferrer">Faculty Profile ↗</a>
           <a href={`${base}/CV_YongjungKim.pdf`} target="_blank">Full CV ↗</a>
           <a href="https://ui.adsabs.harvard.edu/public-libraries/-qlmCI7ySnmm8VvrhaHLLw" target="_blank" rel="noreferrer">ADS Library ↗</a>
+          {profile?.googleScholar && (
+            <a href={profile.googleScholar} target="_blank" rel="noreferrer">Google Scholar ↗</a>
+          )}
+          {orcidUrl && (
+            <a
+              class="pi-orcid-link"
+              href={orcidUrl}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={`View Yongjung Kim's ORCID record (${profile?.orcid})`}
+            >
+              <img src={`${base}/images/orcid-id.svg`} alt="" width="16" height="16" />
+              ORCID ↗
+            </a>
+          )}
         </div>
       </div>
     </section>

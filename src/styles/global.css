@@ -189,7 +189,12 @@ nav a[aria-current='page'] { color: var(--orange); }
 .person-photo span { color: rgba(0,18,36,.28); font: 300 28px 'DM Mono', monospace; letter-spacing: -.1em; }
 .person-name p, .person-details p { color: var(--ink-soft); font-size: 12px; line-height: 1.5; margin: 0; }
 .person-name p { color: var(--orange); font: 400 9px 'DM Mono', monospace; letter-spacing: .06em; text-transform: uppercase; }
-.person-name h3 { font-size: 28px; font-weight: 500; letter-spacing: -.04em; margin: 9px 0 0; }
+.person-name-heading { align-items: center; display: flex; gap: 9px; margin-top: 9px; }
+.person-name h3 { font-size: 28px; font-weight: 500; letter-spacing: -.04em; margin: 0; }
+.orcid-link { align-items: center; border-radius: 50%; display: inline-flex; flex: 0 0 auto; transition: opacity .2s ease; }
+.orcid-link:hover { opacity: .72; }
+.orcid-link:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; }
+.orcid-link img { display: block; height: 24px; width: 24px; }
 .person-period { font: 400 9px 'DM Mono', monospace !important; letter-spacing: .05em; margin-bottom: 9px !important; text-transform: uppercase; }
 .person-link { color: var(--orange); font-size: 20px; }
 .person-link-muted { color: rgba(0,18,36,.25); }
@@ -201,7 +206,8 @@ nav a[aria-current='page'] { color: var(--orange); }
 .pi-intro h1 em { display: inline; padding-left: .72em; }
 .pi-intro > p:not(.eyebrow) { color: var(--ink-soft); font-size: 17px; line-height: 1.7; margin: 45px 0; max-width: 640px; }
 .pi-links { display: flex; flex-wrap: wrap; gap: 9px; }
-.pi-links a { border: 1px solid var(--line); border-radius: 999px; font-size: 11px; padding: 10px 14px; }
+.pi-links a { align-items: center; border: 1px solid var(--line); border-radius: 999px; display: inline-flex; font-size: 11px; gap: 6px; padding: 10px 14px; }
+.pi-orcid-link img { display: block; height: 16px; width: 16px; }
 .pi-biography { border-top: 1px solid var(--line); display: grid; gap: clamp(60px, 8vw, 128px); grid-template-columns: .5fr 1.5fr; padding-bottom: 110px; padding-top: 110px; }
 .pi-biography > div { max-width: 950px; }
 .pi-biography > div p { font-size: clamp(24px, 2.4vw, 37px); letter-spacing: -.04em; line-height: 1.35; margin: 0 0 30px; }
