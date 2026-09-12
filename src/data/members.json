@@ -8,12 +8,26 @@
     "end": null,
     "interests": ["Observational astronomy", "Quasars", "Galaxy evolution"],
     "publicationNames": ["Kim, Yongjung", "Kim, Y."],
-    "photo": "/images/yongjung-kim.jpg",
+    "photo": "/images/yongjung-kim.png",
     "profile": "/people/yongjung-kim/",
     "orcid": "0000-0003-1647-3286",
     "googleScholar": "https://scholar.google.com/citations?user=mREqevIAAAAJ&hl=ko",
     "email": "yongjungkim@sejong.ac.kr",
     "order": 1
+  },
+  {
+    "id": "ashraf-ayubinia",
+    "name": "Ashraf Ayubinia",
+    "role": "Postdoctoral Researcher",
+    "status": "current",
+    "start": "2026-09",
+    "end": null,
+    "interests": ["AGN feedback", "AGN variability", "ML-based Analysis"],
+    "publicationNames": ["Ayubinia, Ashraf"],
+    "photo": "/images/Ashraf-photo.jpg",
+    "profile": null,
+    "orcid": "0009-0002-9526-5820",
+    "order": 2
   },
   {
     "id": "jeyeon-lee",
@@ -24,12 +38,10 @@
     "end": null,
     "interests": ["Near-infrared AGNs", "SPHEREx"],
     "publicationNames": ["Lee, Jeyeon"],
-    "photo": null,
+    "photo": "/images/Jeyeon_Photo.JPG",
     "profile": null,
-    "orcid": null,
-    "googleScholar": null,
-    "email": null,
-    "order": 2
+    "orcid": "0009-0000-0015-0250",
+    "order": 3
   },
   {
     "id": "sodam-choi",
@@ -38,13 +50,24 @@
     "status": "current",
     "start": "2025-09",
     "end": null,
-    "interests": ["AGN activity", "Host galaxies"],
+    "interests": ["AGN activity", "AGN Host galaxies"],
     "publicationNames": ["Choi, Sodam"],
     "photo": null,
     "profile": null,
-    "orcid": null,
-    "googleScholar": null,
-    "email": null,
-    "order": 3
+    "orcid": "0009-0004-3125-3147",
+    "order": 4
+  },
+  {
+    "id": "yujeong-won",
+    "name": "Yujeong Won",
+    "role": "Undergraduate",
+    "status": "current",
+    "start": "2026-09",
+    "end": null,
+    "interests": ["Telescope Characterization"],
+    "publicationNames": ["Won, Yujeong"],
+    "photo": null,
+    "profile": null,
+    "order": 5
   }
 ]
