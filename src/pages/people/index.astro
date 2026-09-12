@@ -30,7 +30,19 @@ function period(start: string, end: string | null) {
         {currentMembers.map((member) => (
           <article class="person-entry">
             <div class="person-photo">
-              {member.photo ? (
+              {member.profile ? (
+                <a
+                  class="person-photo-link"
+                  href={`${base}${member.profile}`}
+                  aria-label={`View ${member.name} profile`}
+                >
+                  {member.photo ? (
+                    <img src={`${base}${member.photo}`} alt={`Portrait of ${member.name}`} />
+                  ) : (
+                    <span>{member.name.split(' ').map((name) => name[0]).join('')}</span>
+                  )}
+                </a>
+              ) : member.photo ? (
                 <img src={`${base}${member.photo}`} alt={`Portrait of ${member.name}`} />
               ) : (
                 <span>{member.name.split(' ').map((name) => name[0]).join('')}</span>
@@ -39,7 +51,11 @@ function period(start: string, end: string | null) {
             <div class="person-name">
               <p>{member.role}</p>
               <div class="person-name-heading">
-                <h3>{member.name}</h3>
+                <h3>
+                  {member.profile ? (
+                    <a class="person-name-link" href={`${base}${member.profile}`}>{member.name}</a>
+                  ) : member.name}
+                </h3>
                 {member.orcid && (
                   <a
                     class="orcid-link"
@@ -74,7 +90,11 @@ function period(start: string, end: string | null) {
                 <div class="person-name">
                   <p>{member.role}</p>
                   <div class="person-name-heading">
-                    <h3>{member.name}</h3>
+                    <h3>
+                      {member.profile ? (
+                        <a class="person-name-link" href={`${base}${member.profile}`}>{member.name}</a>
+                      ) : member.name}
+                    </h3>
                     {member.orcid && (
                       <a
                         class="orcid-link"

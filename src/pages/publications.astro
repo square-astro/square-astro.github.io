@@ -47,7 +47,18 @@ const years = [...new Set(publications.map((publication) => publication.year))];
               >
                 <span class="publication-index">{String(index + 1).padStart(2, '0')}</span>
                 <div>
-                  <h3>{publication.title}</h3>
+                  <h3>
+                    {publication.adsurl ? (
+                      <a
+                        class="publication-title-link"
+                        href={publication.adsurl}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {publication.title}
+                      </a>
+                    ) : publication.title}
+                  </h3>
                   <p>{formatAuthors(publication.authors, groupAuthorNames)}</p>
                 </div>
                 <p class="publication-venue">

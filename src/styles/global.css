@@ -68,7 +68,7 @@ h1 em { color: var(--orange); display: block; font-family: inherit; font-style: 
 .button-primary span { color: var(--highlight); font-size: 17px; }
 .text-link { border-bottom: 1px solid var(--ink); font-size: 13px; padding: 7px 0; }
 .text-link span { color: var(--orange); margin-left: 12px; }
-.hero-visual { align-items: center; background: #001224; display: flex; justify-content: center; min-height: 640px; overflow: visible; padding: clamp(36px, 5vw, 76px); position: relative; }
+.hero-visual { align-items: center; background: #001224; display: flex; justify-content: center; min-height: 640px; overflow: visible; padding: clamp(28px, 3.5vw, 52px); position: relative; }
 .hero-visual::after { background: #001224; bottom: 0; content: ''; left: 100%; pointer-events: none; position: absolute; top: 0; width: max(0px, calc((100vw - var(--hero-max)) / 2)); }
 .hero-visual img { display: block; height: auto; max-width: 560px; object-fit: contain; width: 100%; }
 .hero-index { bottom: 21px; color: rgba(0,18,36,.22); font: 300 12px 'DM Mono', monospace; left: 30px; position: absolute; }
@@ -129,6 +129,7 @@ nav a[aria-current='page'] { color: var(--orange); }
 .publication-list-light .publication-arrow { color: var(--highlight); }
 .publication-row:hover h3 { color: var(--orange); }
 .publication-list-light .publication-row:hover h3 { color: var(--highlight); }
+.publication-title-link:focus-visible { outline: 2px solid var(--orange); outline-offset: 4px; }
 
 .contact-section { display: grid; gap: clamp(70px, 9vw, 144px); grid-template-columns: .45fr 1.55fr; padding-bottom: 120px; padding-top: 120px; }
 .contact-section > div { max-width: 950px; }
@@ -187,10 +188,16 @@ nav a[aria-current='page'] { color: var(--orange); }
 .person-photo { align-items: center; aspect-ratio: 3 / 4; background: #dfe4e3; display: flex; justify-content: center; overflow: hidden; }
 .person-photo img { height: 100%; object-fit: cover; width: 100%; }
 .person-photo span { color: rgba(0,18,36,.28); font: 300 28px 'DM Mono', monospace; letter-spacing: -.1em; }
+.person-photo-link { align-items: center; display: flex; height: 100%; justify-content: center; transition: opacity .2s ease; width: 100%; }
+.person-photo-link:hover { opacity: .88; }
+.person-photo-link:focus-visible { outline: 2px solid var(--orange); outline-offset: -4px; }
 .person-name p, .person-details p { color: var(--ink-soft); font-size: 12px; line-height: 1.5; margin: 0; }
 .person-name p { color: var(--orange); font: 400 9px 'DM Mono', monospace; letter-spacing: .06em; text-transform: uppercase; }
 .person-name-heading { align-items: center; display: flex; gap: 9px; margin-top: 9px; }
 .person-name h3 { font-size: 28px; font-weight: 500; letter-spacing: -.04em; margin: 0; }
+.person-name-link { transition: color .2s ease; }
+.person-name-link:hover { color: var(--orange); }
+.person-name-link:focus-visible { outline: 2px solid var(--orange); outline-offset: 4px; }
 .orcid-link { align-items: center; border-radius: 50%; display: inline-flex; flex: 0 0 auto; transition: opacity .2s ease; }
 .orcid-link:hover { opacity: .72; }
 .orcid-link:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; }
