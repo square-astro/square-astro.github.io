@@ -2,7 +2,7 @@
   {
     "number": "01",
     "title": "Quasar populations across cosmic time",
-    "text": "We build quasar samples across a broad redshift range and use luminosity functions to measure how their abundance and luminosity change over cosmic time. Wide-area surveys such as IMS and KS4 help us identify rare quasars and place their evolution in a statistical context.",
+    "text": "We build quasar samples across a broad redshift range and use luminosity functions to measure how their abundance and luminosity change over cosmic time. Wide-area surveys such as the Infrared Medium-deep Survey (IMS) and the KMTNet Synoptic Survey of Southern Sky (KS4) help us identify rare quasars and place their evolution in a statistical context.",
     "tags": ["Quasar surveys", "Luminosity functions", "Cosmic evolution"],
     "images": [
       {
@@ -25,14 +25,14 @@
   },
   {
     "number": "02",
-    "title": "Obscured quasars and black-hole growth",
-    "text": "We study quasars whose optical light is reddened or obscured by dust. By combining optical and infrared spectral energy distributions with emission-line measurements, we examine how obscuration affects quasar demographics and what accretion rates reveal about black-hole growth.",
+    "title": "Obscured quasars and black hole growth",
+    "text": "We study quasars whose optical light is reddened or obscured by dust. By combining optical and infrared spectral energy distributions with emission-line measurements, we examine how obscuration affects quasar demographics and what accretion rates reveal about black hole growth.",
     "tags": ["Red quasars", "Dust obscuration", "Accretion"],
     "images": [
       {
         "src": "/images/research/red-quasar-sed.svg",
-        "alt": "Examples of optical to mid-infrared spectral energy distribution fits for type-1 quasars",
-        "caption": "Optical-to-mid-infrared SED fitting for red type-1 quasars",
+        "alt": "Examples of optical to mid-infrared spectral energy distribution fits for type 1 quasars",
+        "caption": "Optical-to-mid-infrared SED fitting for red type 1 quasars",
         "source": "Kim et al. 2024",
         "sourceUrl": "https://arxiv.org/abs/2408.03228",
         "fit": "contain"
@@ -50,8 +50,8 @@
   {
     "number": "03",
     "title": "SPHEREx survey science",
-    "text": "We use SPHEREx all-sky near-infrared spectrophotometry to study the spectral energy distributions, redshifts, and population properties of quasars and galaxies. Our current work focuses on methods and analyses that make full use of this new survey dataset.",
-    "tags": ["SPHEREx", "Near-infrared spectroscopy", "All-sky surveys"],
+    "text": "We use SPHEREx all-sky near-infrared spectrophotometry to study the spectral energy distributions, redshifts, and population properties of quasars and galaxies. Our current work focuses on methods for analyzing the new SPHEREx data.",
+    "tags": ["SPHEREx", "Near-infrared spectrophotometry", "All-sky surveys"],
     "images": [
       {
         "src": "/images/research/spherex-in-orbit.jpg",

@@ -13,14 +13,14 @@ const groupAuthorNames = members.flatMap((member) => member.publicationNames);
 const years = [...new Set(publications.map((publication) => publication.year))];
 ---
 
-<SiteLayout title="Publications — SQuARE" description="Publications authored by current SQuARE members, including the PI’s work before the group was established.">
+<SiteLayout title="Publications — SQuARE" description="Publications authored by SQuARE members, including the PI’s work before the group was established.">
   <Header />
   <main>
     <PageHero
       eyebrow="Publications"
-      title="Publications from our group."
-      accent="our group."
-      intro="Publications authored by current SQuARE members, including the PI’s work before the group was established. Selected publications are papers led by group members (first or corresponding author)."
+      title="Publications by SQuARE members."
+      accent="SQuARE members."
+      intro="Publications authored by SQuARE members, including work by the PI published before the group was established. Selected publications are papers for which a SQuARE member is a first or corresponding author."
     />
     <section class="publication-controls section-pad" aria-label="Publication filters">
       <label class="search-control">
