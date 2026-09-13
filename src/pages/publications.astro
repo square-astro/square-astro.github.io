@@ -30,8 +30,6 @@ const years = [...new Set(publications.map((publication) => publication.year))];
       <div class="filter-buttons" aria-label="Filter publications">
         <button class="filter-button is-active" type="button" data-filter="all">All <span>{publications.length}</span></button>
         <button class="filter-button" type="button" data-filter="selected">Selected <span>{publications.filter((publication) => publication.selected).length}</span></button>
-        <a href="https://ui.adsabs.harvard.edu/public-libraries/-qlmCI7ySnmm8VvrhaHLLw" target="_blank" rel="noreferrer">ADS Library ↗</a>
-        <a href="https://scholar.google.co.kr/citations?user=mREqevIAAAAJ" target="_blank" rel="noreferrer">Google Scholar ↗</a>
       </div>
     </section>
     <section class="publication-archive section-pad" aria-live="polite">
