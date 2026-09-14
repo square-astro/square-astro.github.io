@@ -86,7 +86,7 @@ function period(start: string, end: string | null) {
       </div>
       <div class="member-preview-grid">
         {currentMembers.map((member) => (
-          <article class={`member-card ${member.role === 'Principal Investigator' ? 'member-card-featured' : ''}`}>
+          <article class={`member-card ${member.role === 'Principal Investigator' ? 'member-card-featured' : ''} ${member.profile ? 'member-card-linked' : ''}`}>
             <div class="member-image">
               {member.photo ? (
                 <img src={`${base}${member.photo}`} alt={`Portrait of ${member.name}`} loading="lazy" />
@@ -101,6 +101,13 @@ function period(start: string, end: string | null) {
               <h3>{member.name}</h3>
               <span>{period(member.start, member.end)}</span>
             </div>
+            {member.profile && (
+              <a
+                class="member-card-profile-link"
+                href={`${base}${member.profile}`}
+                aria-label={`View ${member.name} profile`}
+              ></a>
+            )}
           </article>
         ))}
       </div>
